@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Todo } from "types";
 
 interface TodoItemProps extends Todo {
@@ -6,20 +5,12 @@ interface TodoItemProps extends Todo {
 	removeTodo: (id: Todo["id"]) => void;
 }
 
-type ITodo = {
-	id: string;
-	title: string;
-	completed: boolean;
-};
-
 const TodoItem = ({ id, title, completed, toggleTodo, removeTodo }: TodoItemProps) => {
-	const [todo, setTodo] = useState<ITodo | null>(null);
-
 	return (
 		<li>
-			<input id={id} onChange={() => toggleTodo(id)} type='checkbox' />
+			<input id={id} checked={completed} onChange={() => toggleTodo(id)} type='checkbox' />
 			<span>{title}</span>
-			<span onClick={() => removeTodo(id)}>{completed}</span>
+			<span onClick={() => removeTodo(id)}>&times;</span>
 		</li>
 	);
 };

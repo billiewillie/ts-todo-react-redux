@@ -1,10 +1,11 @@
 import { useRef } from "react";
 
-interface NewTodoFormProps {
+interface NewItemProps {
+	placeholder: string;
 	handleClick: (text: string) => void;
 }
 
-const NewTodoForm = ({ handleClick }: NewTodoFormProps) => {
+const NewItem = ({ handleClick, placeholder }: NewItemProps) => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const onClick = () => {
 		if (inputRef.current) {
@@ -13,11 +14,11 @@ const NewTodoForm = ({ handleClick }: NewTodoFormProps) => {
 		}
 	};
 	return (
-		<form>
-			<input ref={inputRef} />
+		<>
+			<input type='text' placeholder={placeholder} ref={inputRef} />
 			<button onClick={onClick}>Add todo</button>
-		</form>
+		</>
 	);
 };
 
-export default NewTodoForm;
+export default NewItem;
